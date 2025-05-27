@@ -1,10 +1,5 @@
 import React, { useState } from "react";
-import { UserData } from "./path/to/UserData"; // Adjust the import path as needed
-
-export interface UserModalProps {
-  onClose: () => void;
-  onSubmit: (user: UserData) => void;
-}
+import { UserData, UserModalProps } from "@/interfaces";
 
 const UserModal: React.FC<UserModalProps> = ({ onClose, onSubmit }) => {
   const [user, setUser] = useState<UserData>({
