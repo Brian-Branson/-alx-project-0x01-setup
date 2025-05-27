@@ -1,22 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import UserCard from "@/components/common/UserCard";
-import { UserProps } from "@/interfaces";
+import UserModal from "@/components/common/UserModal";
 import Header from "@/components/layout/Header";
+import { UserData } from "@/interfaces";
 
-interface UsersPageProps {
-  posts: UserProps[];  // The fetched users are assigned to "posts" here
-}
+const Users: React.FC<{ posts: UserData[] }> = ({ posts }) => {
+  const [users, setUsers] = useState<UserData[]>(posts);
+  const [showModal, setShowModal] = useState(false);
 
-const Users: React.FC<UsersPageProps> = ({ posts }) => {
+  const handleAddUser = (newUser: UserData) => {
+    const userWithId = { ...newUser, id: users.length + 1 };
+    setUsers([...users, userWithId]);
+  };
+
   return (
-    <div className="p-4">
-      <Header/>
-      <h1 className="text-3xl font-bold mb-6">Users List</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {posts.map((user) => (
-          <UserCard key={user.id} {...user} />
-        ))}
-      </div>
+    <div>
+      <Header />
+      <main className="p-4">
+        <div className="flex justify-between mb-4">
+          <h1 className="text-2xl font-bold">Users</h1>
+          <button
+            className="bg-blue-600 text-white px-4 py-2 rounded"
+            onClick={() => setShowModal(true)}
+          >
+            Add User
+          </button>
+        </div>
+        <div className="grid grid-cols-3 gap-4">
+          {users.map((user) => (
+            <UserCard key={user.id} {...user} />
+          ))}
+        </div>
+      </main>
+
+      {showModal && (
+        <UserModal
+          onClose={() => setShowModal(false)}
+          onSubmit={handleAddUser}
+        />
+      )}
     </div>
   );
 };

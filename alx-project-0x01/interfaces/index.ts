@@ -5,8 +5,17 @@ export interface PostProps {
   body: string;
 }
 
-// interfaces/index.ts
+export interface PostData {
+  userId: number;
+  id?: number;
+  title: string;
+  body: string;
+}
 
+export interface PostModalProps {
+  onClose: () => void;
+  onSubmit: (post: PostData) => void;
+}
 export interface Geo {
   lat: string;
   lng: string;
@@ -26,8 +35,8 @@ export interface Company {
   bs: string;
 }
 
-export interface UserProps {
-  id: number;
+export interface UserData {
+  id?: number;  // optional because new users won't have an id initially
   name: string;
   username: string;
   email: string;
@@ -37,14 +46,7 @@ export interface UserProps {
   company: Company;
 }
 
-export interface PostData {
-  userId: number;
-  id?: number;
-  title: string;
-  body: string;
-}
-
-export interface PostModalProps {
+export interface UserModalProps {
   onClose: () => void;
-  onSubmit: (post: PostData) => void;
+  onSubmit: (user: UserData) => void;
 }
