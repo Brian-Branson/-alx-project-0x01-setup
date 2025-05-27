@@ -1,3 +1,4 @@
+// Post interfaces
 export interface PostProps {
   userId: number;
   id: number;
@@ -16,6 +17,8 @@ export interface PostModalProps {
   onClose: () => void;
   onSubmit: (post: PostData) => void;
 }
+
+// Common nested interfaces
 export interface Geo {
   lat: string;
   lng: string;
@@ -35,8 +38,11 @@ export interface Company {
   bs: string;
 }
 
+// User interfaces
+
+// UserData: used for new users, id is optional
 export interface UserData {
-  id?: number;  // optional because new users won't have an id initially
+  id?: number;
   name: string;
   username: string;
   email: string;
@@ -46,10 +52,7 @@ export interface UserData {
   company: Company;
 }
 
-export interface UserModalProps {
-  onClose: () => void;
-  onSubmit: (user: UserData) => void;
-}
+// UserProps: used when user has a guaranteed id
 export interface UserProps {
   id: number;
   name: string;
@@ -60,6 +63,13 @@ export interface UserProps {
   website: string;
   company: Company;
 }
+
+// Props for the User modal component
+export interface UserModalProps {
+  onClose: () => void;
+  onSubmit: (user: UserData) => void;  // Make sure this uses UserData, not UserProps
+}
+
 export interface UserListProps {
   users: UserProps[];
   onEdit: (user: UserProps) => void;
