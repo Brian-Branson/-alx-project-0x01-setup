@@ -1,6 +1,7 @@
 import React from "react";
 import UserCard from "@/components/common/UserCard";
 import { UserProps } from "@/interfaces";
+import Header from "@/components/layout/Header";
 
 interface UsersPageProps {
   posts: UserProps[];  // The fetched users are assigned to "posts" here
@@ -9,6 +10,7 @@ interface UsersPageProps {
 const Users: React.FC<UsersPageProps> = ({ posts }) => {
   return (
     <div className="p-4">
+      <Header/>
       <h1 className="text-3xl font-bold mb-6">Users List</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {posts.map((user) => (
