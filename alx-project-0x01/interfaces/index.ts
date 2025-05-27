@@ -60,3 +60,8 @@ export interface UserProps {
   website: string;
   company: Company;
 }
+export interface UserListProps {
+  users: UserProps[];
+  onEdit: (user: UserProps) => void;
+  onDelete: (userId: number) => void;
+}
